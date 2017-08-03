@@ -13,12 +13,52 @@
   <title>Antrian Pasien Puskesmas Pucang Sewu</title>
   <meta name="description" content="One of Adnan's projects. Visit me at adnanfajri.com">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/app.css">
+  <link href='https://bootswatch.com/lumen/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://cdn.rawgit.com/adnanfajr/7de182c4d93838a3f925d9dde5ab495e/raw/42c9e2d6437f2a3a8274347e4041153cd3137d48/antrian.css'
+    rel='stylesheet' type='text/css'>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+  <script>
+    $(document).ready(function () {
+      var socket = io();
+      $("#add_umum").click(function () {
+        socket.emit('umum added', $("#no_umum").val());
+      });
+      socket.on('refresh umum', function (msg) {
+        $("#show_umum").contents().first().replaceWith(msg);
+
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_umum").val(no);
+      });
+
+      $("#add_lansia").click(function () {
+        socket.emit('lansia added', $("#no_lansia").val());
+      });
+      socket.on('refresh lansia', function (msg) {
+        $("#show_lansia").contents().first().replaceWith(msg);
+
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_lansia").val(no);
+      });
+
+      $("#add_gigi").click(function () {
+        socket.emit('gigi added', $("#no_gigi").val());
+      });
+      socket.on('refresh gigi', function (msg) {
+        $("#show_gigi").contents().first().replaceWith(msg);
+        
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_gigi").val(no);
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -27,109 +67,266 @@
   <![endif]-->
 
   <div class="container-fluid">
-
-    <div class="row">
-      <div class="col-md-12">
-        <center>
-          <h3>Selamat datang di Puskesmas Pucang Sewu</h3>
-        </center>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7 col-md-offset-1">
-        <center>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/iuRS102_Fnw?version=3&autoplay=1&loop=1&playlist=iuRS102_Fnw"
-            frameborder="0" allowfullscreen></iframe>
-        </center>
-      </div>
-      <div class="col-md-3" style="text-align: center">
-        <img src="img/logo.png" style="height: 150px; width: 150px" />
-        <p>
-          wwwwwwwwwww wwwwwwwwwwwwww wwwwwwwwwwwwwwww wwwwwwwwwwww wwwwwwwww wwwwwwww wwwwwwwwwwww wwwwwwwwwww wwwwwwwwww wwwwwwwwwwwww
-          wwwwwwwwwwwwwwwwww wwwwwwwww wwwwwww wwwwwwwwwwwwww
-        </p>
-      </div>
-    </div>
-    <div class="row" style="margin-bottom: 0">
-      <div class="col-md-2 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <center>Poli Umum</center>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <center><b>001</b></center>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <center>Poli Lansia</center>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <center><b>001</b></center>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <center>Poli Gigi</center>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <center><b>001</b></center>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <center>Poli KIA</center>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <center><b>001</b></center>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <center>Poli Apa</center>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <center><b>001</b></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="foot">
+    <section class="view">
+      <div class="row">
+        <div class="col-md-12">
           <center>
-            <marquee>
-              <h5>RUNNING TEXT</h5>
-            </marquee>
+            <h1 style="color: #fff;font-size: 4em"><b>Selamat datang di Puskesmas Pucang Sewu</b></h1>
           </center>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <center>
-          <a class="btn btn-default" href="#" role="button">LOGIN</a>
-        </center>
+      <div class="row">
+        <div class="col-md-7 col-md-offset-1">
+          <center>
+            <iframe width="745" height="500" src="https://www.youtube.com/embed/iuRS102_Fnw?version=3&autoplay=1&loop=1&playlist=iuRS102_Fnw"
+              frameborder="0" allowfullscreen></iframe>
+          </center>
+        </div>
+        <div class="col-md-3" style="text-align: center">
+          <img src="http://res.cloudinary.com/adnanfajri/image/upload/v1501769323/Logo_Kota_Surabaya_Jawa_Timur_og3wj8.png" style="height: 200px; width: 170px; margin-right: 50px"
+          />
+          <img src="http://res.cloudinary.com/adnanfajri/image/upload/v1501769126/logo.png" style="height: 200px; width: 200px" />
+          <br>
+          <h2 style="color: #fff"><b>
+            Lorem ipsum dolor sit amet, ne pri porro everti. Vix eu probo euismod offendit, recusabo ocurreret tincidunt vix ex. Sit
+            ne illud inani, mutat apeirian adversarium duo ad, an tantas voluptatum usu. Sit eu regione sanctus.
+          </h2></b>
+        </div>
       </div>
-    </div>
+      <div class="row" style="margin-bottom: 0">
+        <div class="col-md-2 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Umum</b></center>
+              </h3>
+            </div>
+            <div class="panel-body panel-view">
+              <center>
+                <div id="show_umum" style="font-weight: 700; font-size: 1.6em">0</div>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Lansia</b></center>
+              </h3>
+            </div>
+            <div class="panel-body panel-view">
+              <center>
+                <div id="show_lansia" style="font-weight: 700; font-size: 1.6em">0</div>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Gigi</b></center>
+              </h3>
+            </div>
+            <div class="panel-body panel-view">
+              <center>
+                <div id="show_gigi" style="font-weight: 700; font-size: 1.6em">0</div>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli KIA</b></center>
+              </h3>
+            </div>
+            <div class="panel-body panel-view">
+              <center>
+              <div id="show_kia" style="font-weight: 700; font-size: 1.6em">0</div>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Apa</b></center>
+              </h3>
+            </div>
+            <div class="panel-body panel-view">
+              <center>
+                <div id="show_apa" style="font-weight: 700; font-size: 1.6em">0</div>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="foot">
+            <center>
+              <marquee>
+                <h2><b>RUNNING TEXT</b></h2>
+              </marquee>
+            </center>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin">
+      <div class="row">
+        <div class="col-md-12">
+          <center>
+            <h2><b>Admin View</b></h2>
+          </center>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center>Jumlah Antrian</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <input name="jumlah" type="number" class="form-control" placeholder="Jumlah antrian" required>
+                <br>
+                <a class="btn btn-primary" href="#" role="button">Simpan</a>
+                <a class="btn btn-danger" href="#" role="button">Buat Baru</a>
+              </center>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center>ID Video Youtube</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+                <center>
+                  <input name="vid" type="text" class="form-control" placeholder="ID Video (bukan URL keseluruhan)" required>
+                  <br>
+                  <a class="btn btn-success" href="#" role="button">Pasang</a>
+                </center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Umum</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">Pasien ke-</div>
+                    <input id="no_umum" type="number" class="form-control" value="1" disabled>
+                  </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="button" id="add_umum" value="Panggil">
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Lansia</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">Pasien ke-</div>
+                    <input id="no_lansia" type="number" class="form-control" value="1" disabled>
+                  </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="button" id="add_lansia" value="Panggil">
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Gigi</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">Pasien ke-</div>
+                    <input id="no_gigi" type="number" class="form-control" value="1" disabled>
+                  </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="button" id="add_gigi" value="Panggil">
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli KIA</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">Pasien ke-</div>
+                    <input id="no_kia" type="number" class="form-control" value="1" disabled>
+                  </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="button" id="add_kia" value="Panggil">
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center><b>Poli Apa</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">Pasien ke-</div>
+                    <input id="no_apa" type="number" class="form-control" value="1" disabled>
+                  </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="button" id="add_apa" value="Panggil">
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
 </body>

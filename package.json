@@ -1,0 +1,26 @@
+{
+  "name": "antrian_puskesmas",
+  "version": "0.0.1",
+  "description": "Aplikasi untuk antrian pasien di Puskesmas Pucang Sewu, Surabaya",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adnanfajr/antrian-pasien.git"
+  },
+  "keywords": [
+    "antrian"
+  ],
+  "author": "Adnan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adnanfajr/antrian-pasien/issues"
+  },
+  "homepage": "https://github.com/adnanfajr/antrian-pasien#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.3"
+  }
+}
