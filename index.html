@@ -25,6 +25,42 @@
   <script>
     $(document).ready(function () {
       var socket = io();
+      socket.on('db connect', function (msg) {
+        $("#db_status").contents().first().replaceWith(msg);
+      });
+
+      socket.on('data umum', function (msg) {
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_umum").val(no);
+        
+        $("#show_umum").contents().first().replaceWith(msg);
+      });
+
+      socket.on('data lansia', function (msg) {
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_lansia").val(no);
+        
+        $("#show_lansia").contents().first().replaceWith(msg);
+      });
+
+      socket.on('data gigi', function (msg) {
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_gigi").val(no);
+
+        $("#show_gigi").contents().first().replaceWith(msg);
+      });
+
+      socket.on('data kia', function (msg) {
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_kia").val(no);
+
+        $("#show_kia").contents().first().replaceWith(msg);
+      });
+
       $("#add_umum").click(function () {
         socket.emit('umum added', $("#no_umum").val());
       });
@@ -56,6 +92,17 @@
         var a = parseInt(msg);
         var no = a + 1;
         $("#no_gigi").val(no);
+      });
+
+      $("#add_kia").click(function () {
+        socket.emit('kia added', $("#no_kia").val());
+      });
+      socket.on('refresh kia', function (msg) {
+        $("#show_kia").contents().first().replaceWith(msg);
+        
+        var a = parseInt(msg);
+        var no = a + 1;
+        $("#no_kia").val(no);
       });
     });
   </script>
@@ -183,6 +230,11 @@
         <div class="col-md-12">
           <center>
             <h2><b>Admin View</b></h2>
+          </center>
+        </div>
+        <div class="col-md-12">
+          <center>
+            <div id="db_status">Not connected</div>
           </center>
         </div>
       </div>
@@ -321,6 +373,25 @@
                   </div>
                 </div>
                 <input class="btn btn-primary btn-block" type="button" id="add_apa" value="Panggil">
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <center>Running Text</center>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <center>
+                <input name="jumlah" type="text" class="form-control" placeholder="Teks anda" required>
+                <br>
+                <a class="btn btn-primary" href="#" role="button">Simpan</a>
               </center>
             </div>
           </div>
