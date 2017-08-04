@@ -94,14 +94,30 @@ io.on('connection', function (socket) {
         });
 
         // Youtube ID Video
+        conn.query('SELECT isi FROM attribut WHERE kategori = "jumlah" ORDER BY id DESC LIMIT 1', function (err, jumlah) {
+            if (err) {
+                return console.log('Error1');
+            } else if (!jumlah.length) {
+                io.emit('data jumlah', '0');
+                return console.log('Jumlah Pasien is empty');
+            } else if (!jumlah[0].isi) {
+                io.emit('data jumlah', '0');
+                return console.log('Jumlah Pasien is empty');
+            }
+
+            console.log(jumlah[0].isi);
+            io.emit('data jumlah', jumlah[0].isi);
+        });
+
+        // Youtube ID Video
         conn.query('SELECT isi FROM attribut WHERE kategori = "youtube" ORDER BY id DESC LIMIT 1', function (err, youtube) {
             if (err) {
                 return console.log('Error1');
             } else if (!youtube.length) {
-                io.emit('data kia', '0');
+                io.emit('data youtube', '0');
                 return console.log('Youtube ID is empty');
             } else if (!youtube[0].isi) {
-                io.emit('data kia', '0');
+                io.emit('data youtube', '0');
                 return console.log('Youtube ID is empty');
             }
 
@@ -161,6 +177,26 @@ io.on('connection', function (socket) {
         add_kia(kia, function (res) {
             if (res) {
                 io.emit('refresh kia', kia);
+            } else {
+                io.emit('error');
+            }
+        });
+    });
+
+    socket.on('jumlah added', function (jumlah) {
+        update_jumlah(jumlah, function (res) {
+            if (res) {
+                io.emit('refresh jumlah', jumlah);
+            } else {
+                io.emit('error');
+            }
+        });
+    });
+
+    socket.on('runtext added', function (runtext) {
+        update_runtext(runtext, function (res) {
+            if (res) {
+                io.emit('refresh runtext', runtext);
             } else {
                 io.emit('error');
             }
@@ -232,6 +268,44 @@ var add_kia = function (kia, callback) {
             return;
         }
         connection.query("INSERT INTO `poli_kia` (`no_urut`) VALUES ('" + kia + "')", function (err, rows) {
+            connection.release();
+            if (!err) {
+                callback(true);
+            }
+        });
+        connection.on('error', function (err) {
+            callback(false);
+            return;
+        });
+    });
+}
+
+var update_jumlah = function (jumlah, callback) {
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            callback(false);
+            return;
+        }
+        connection.query("UPDATE `attribut` SET `isi`='" + jumlah + "' WHERE kategori='jumlah'", function (err, rows) {
+            connection.release();
+            if (!err) {
+                callback(true);
+            }
+        });
+        connection.on('error', function (err) {
+            callback(false);
+            return;
+        });
+    });
+}
+
+var update_runtext = function (runtext, callback) {
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            callback(false);
+            return;
+        }
+        connection.query("UPDATE `attribut` SET `isi`='" + runtext + "' WHERE kategori='running_text'", function (err, rows) {
             connection.release();
             if (!err) {
                 callback(true);

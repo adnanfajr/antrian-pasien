@@ -61,6 +61,18 @@
         $("#show_kia").contents().first().replaceWith(msg);
       });
 
+      socket.on('data jumlah', function (msg) {
+        $("#tx_jumlah").val(msg);
+
+        $("#jumlah").contents().first().replaceWith(msg);
+      });
+
+      socket.on('data runtext', function (msg) {
+        $("#tx_runtext").val(msg);
+
+        $("#runtext").contents().first().replaceWith(msg);
+      });
+
       $("#add_umum").click(function () {
         socket.emit('umum added', $("#no_umum").val());
       });
@@ -103,6 +115,24 @@
         var a = parseInt(msg);
         var no = a + 1;
         $("#no_kia").val(no);
+      });
+
+      $("#update_jumlah").click(function () {
+        socket.emit('jumlah added', $("#tx_jumlah").val());
+      });
+      socket.on('refresh jumlah', function (msg) {
+        $("#jumlah").contents().first().replaceWith(msg);
+        $("#tx_jumlah").prop("disabled", true);
+        $("#tx_jumlah").val(msg);
+        $("#update_jumlah").hide();
+      });
+
+      $("#update_runtext").click(function () {
+        socket.emit('runtext added', $("#tx_runtext").val());
+      });
+      socket.on('refresh runtext', function (msg) {
+        $("#runtext").contents().first().replaceWith(msg);
+        $("#tx_runtext").val(msg);
       });
     });
   </script>
@@ -217,7 +247,7 @@
           <div class="foot">
             <center>
               <marquee>
-                <h2><b>RUNNING TEXT</b></h2>
+                <h2><div id="runtext"><b>RUNNING TEXT</b></div></h2>
               </marquee>
             </center>
           </div>
@@ -234,7 +264,7 @@
         </div>
         <div class="col-md-12">
           <center>
-            <div id="db_status">Not connected</div>
+            <div id="db_status">Error connecting to DB</div>
           </center>
         </div>
       </div>
@@ -249,9 +279,9 @@
             </div>
             <div class="panel-body">
               <center>
-                <input name="jumlah" type="number" class="form-control" placeholder="Jumlah antrian" required>
+                <input id="tx_jumlah" type="number" class="form-control" placeholder="Jumlah antrian" required>
                 <br>
-                <a class="btn btn-primary" href="#" role="button">Simpan</a>
+                <input class="btn btn-primary" type="button" id="update_jumlah" value="Simpan">
                 <a class="btn btn-danger" href="#" role="button">Buat Baru</a>
               </center>
             </div>
@@ -269,7 +299,7 @@
                 <center>
                   <input name="vid" type="text" class="form-control" placeholder="ID Video (bukan URL keseluruhan)" required>
                   <br>
-                  <a class="btn btn-success" href="#" role="button">Pasang</a>
+                  <input class="btn btn-primary" type="button" id="update_ytb" value="Panggil">
                 </center>
             </div>
           </div>
@@ -389,9 +419,9 @@
             </div>
             <div class="panel-body">
               <center>
-                <input name="jumlah" type="text" class="form-control" placeholder="Teks anda" required>
+                <input id="tx_runtext" type="text" class="form-control" placeholder="Teks anda">
                 <br>
-                <a class="btn btn-primary" href="#" role="button">Simpan</a>
+                <input class="btn btn-primary btn-block" type="button" id="update_runtext" value="Perbarui">
               </center>
             </div>
           </div>
