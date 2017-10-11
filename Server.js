@@ -183,6 +183,16 @@ io.on('connection', function (socket) {
         });
     });
 
+    socket.on('jumlah empty', function (jumlah) {
+        kosongkan_jumlah(jumlah, function (res) {
+            if (res) {
+                io.emit('empty jumlah', jumlah);
+            } else {
+                io.emit('error');
+            }
+        });
+    });
+
     socket.on('jumlah added', function (jumlah) {
         update_jumlah(jumlah, function (res) {
             if (res) {
@@ -268,6 +278,25 @@ var add_kia = function (kia, callback) {
             return;
         }
         connection.query("INSERT INTO `poli_kia` (`no_urut`) VALUES ('" + kia + "')", function (err, rows) {
+            connection.release();
+            if (!err) {
+                callback(true);
+            }
+        });
+        connection.on('error', function (err) {
+            callback(false);
+            return;
+        });
+    });
+}
+
+var kosongkan_jumlah = function (jumlah, callback) {
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            callback(false);
+            return;
+        }
+        connection.query("UPDATE `attribut` SET `isi`= 0 WHERE kategori='jumlah'", function (err, rows) {
             connection.release();
             if (!err) {
                 callback(true);

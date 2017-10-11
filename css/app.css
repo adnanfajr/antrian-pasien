@@ -1,0 +1,106 @@
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+
+/*
+ * Styles copied from the Grid example to make grid rows & columns visible.
+ */
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+h3 {
+    color: #fff;
+}
+
+h4 {
+    margin-top: 15px;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.row .row {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+[class*="col-"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.head1 {
+    height: 60vh !important;
+}
+
+.panel-title {
+    font-size: 1.8em;
+}
+.panel-view {
+    font-size: 5em;
+    height: 20vh;
+}
+
+body {
+    background: rgba(102, 255, 138, 1);
+    background: -moz-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(102, 255, 138, 1)), color-stop(13%, rgba(102, 255, 138, 1)), color-stop(85%, rgba(19, 191, 224, 1)), color-stop(100%, rgba(2, 178, 242, 1)));
+    background: -webkit-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: -o-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66ff8a', endColorstr='#02b2f2', GradientType=1);
+}
+.view {
+    background: rgba(102, 255, 138, 1);
+    background: -moz-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(102, 255, 138, 1)), color-stop(13%, rgba(102, 255, 138, 1)), color-stop(85%, rgba(19, 191, 224, 1)), color-stop(100%, rgba(2, 178, 242, 1)));
+    background: -webkit-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: -o-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    background: linear-gradient(45deg, rgba(102, 255, 138, 1) 0%, rgba(102, 255, 138, 1) 13%, rgba(19, 191, 224, 1) 85%, rgba(2, 178, 242, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66ff8a', endColorstr='#02b2f2', GradientType=1);
+}
+.foot {
+    background: rgba(255,255,255,0.53);
+    background: -moz-linear-gradient(left, rgba(255,255,255,0.53) 0%, rgba(246,246,246,0.53) 47%, rgba(237,237,237,0.53) 98%, rgba(237,237,237,0.25) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,0.53)), color-stop(47%, rgba(246,246,246,0.53)), color-stop(98%, rgba(237,237,237,0.53)), color-stop(100%, rgba(237,237,237,0.25)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0.53) 0%, rgba(246,246,246,0.53) 47%, rgba(237,237,237,0.53) 98%, rgba(237,237,237,0.25) 100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,0.53) 0%, rgba(246,246,246,0.53) 47%, rgba(237,237,237,0.53) 98%, rgba(237,237,237,0.25) 100%);
+    background: -ms-linear-gradient(left, rgba(255,255,255,0.53) 0%, rgba(246,246,246,0.53) 47%, rgba(237,237,237,0.53) 98%, rgba(237,237,237,0.25) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0.53) 0%, rgba(246,246,246,0.53) 47%, rgba(237,237,237,0.53) 98%, rgba(237,237,237,0.25) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+}
+
+.admin {
+    background: #fff;
+}
+
+.container-fluid {
+    margin: 1em;
+}
+
+/* media 1880x695 */
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}

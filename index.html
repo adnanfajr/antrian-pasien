@@ -14,8 +14,11 @@
   <meta name="description" content="One of Adnan's projects. Visit me at adnanfajri.com">
 
   <link href='https://bootswatch.com/lumen/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href='css/app.css' rel='stylesheet' type='text/css'>
+  <!--
   <link href='https://cdn.rawgit.com/adnanfajr/7de182c4d93838a3f925d9dde5ab495e/raw/42c9e2d6437f2a3a8274347e4041153cd3137d48/antrian.css'
     rel='stylesheet' type='text/css'>
+    -->
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 
@@ -117,6 +120,17 @@
         $("#no_kia").val(no);
       });
 
+      $("#kosongkan_jumlah").click(function () {
+        socket.emit('jumlah empty');
+      });
+      socket.on('empty jumlah', function (msg) {
+        $("#jumlah").contents().first().replaceWith(msg);
+        $("#tx_jumlah").prop("disabled", false);
+        $("#tx_jumlah").val(msg);
+        $("#update_jumlah").show();
+        $("#kosongkan_jumlah").hide();
+      });
+
       $("#update_jumlah").click(function () {
         socket.emit('jumlah added', $("#tx_jumlah").val());
       });
@@ -125,6 +139,7 @@
         $("#tx_jumlah").prop("disabled", true);
         $("#tx_jumlah").val(msg);
         $("#update_jumlah").hide();
+        $("#kosongkan_jumlah").show();
       });
 
       $("#update_runtext").click(function () {
@@ -153,34 +168,45 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-7 col-md-offset-1">
+        <div class="col-md-6 col-md-offset-1">
           <center>
-            <iframe width="745" height="500" src="https://www.youtube.com/embed/iuRS102_Fnw?version=3&autoplay=1&loop=1&playlist=iuRS102_Fnw"
+            <iframe width="765" height="520" src="https://www.youtube.com/embed/iuRS102_Fnw?version=3&autoplay=0&loop=1&playlist=iuRS102_Fnw"
               frameborder="0" allowfullscreen></iframe>
           </center>
         </div>
-        <div class="col-md-3" style="text-align: center">
-          <img src="http://res.cloudinary.com/adnanfajri/image/upload/v1501769323/Logo_Kota_Surabaya_Jawa_Timur_og3wj8.png" style="height: 200px; width: 170px; margin-right: 50px"
-          />
-          <img src="http://res.cloudinary.com/adnanfajri/image/upload/v1501769126/logo.png" style="height: 200px; width: 200px" />
+        <div class="col-md-4" style="text-align: center">
+          <img src="http://res.cloudinary.com/adnanfajri/image/upload/v1501769323/Logo_Kota_Surabaya_Jawa_Timur_og3wj8.png" style="height: 200px; width: 170px;"/>
           <br>
-          <h2 style="color: #fff"><b>
-            Lorem ipsum dolor sit amet, ne pri porro everti. Vix eu probo euismod offendit, recusabo ocurreret tincidunt vix ex. Sit
-            ne illud inani, mutat apeirian adversarium duo ad, an tantas voluptatum usu. Sit eu regione sanctus.
-          </h2></b>
+          <b>
+          <h2 style="color: #fff">
+            Pemerintah Kota Surabaya
+            </br>
+            Dinas Kesehatan
+          </h2>
+          <h1 style="color: #fff;font-size: 3em">
+            UPTD PUSKESMAS PUCANG SEWU
+          </h2>
+          <h2 style="color: #fff">
+            Jl. Pucang Anom Timur No.72 Surabaya
+            </br>
+            Telp: (031) 5018527
+            </br>
+            Email: pkmpucangsewu@gmail.com
+          </h2>
+          </b>
         </div>
       </div>
       <div class="row" style="margin-bottom: 0">
         <div class="col-md-2 col-md-offset-1">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">
+              <h2 class="panel-title" style="font-size: 3em;">
                 <center><b>Poli Umum</b></center>
               </h3>
             </div>
             <div class="panel-body panel-view">
               <center>
-                <div id="show_umum" style="font-weight: 700; font-size: 1.6em">0</div>
+                <div id="show_umum" style="font-weight: 700; font-size: 2em">0</div>
               </center>
             </div>
           </div>
@@ -188,13 +214,13 @@
         <div class="col-md-2">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">
+              <h2 class="panel-title" style="font-size: 3em;">
                 <center><b>Poli Lansia</b></center>
               </h3>
             </div>
             <div class="panel-body panel-view">
               <center>
-                <div id="show_lansia" style="font-weight: 700; font-size: 1.6em">0</div>
+                <div id="show_lansia" style="font-weight: 700; font-size: 2em">0</div>
               </center>
             </div>
           </div>
@@ -202,13 +228,13 @@
         <div class="col-md-2">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">
+              <h2 class="panel-title" style="font-size: 3em;">
                 <center><b>Poli Gigi</b></center>
               </h3>
             </div>
             <div class="panel-body panel-view">
               <center>
-                <div id="show_gigi" style="font-weight: 700; font-size: 1.6em">0</div>
+                <div id="show_gigi" style="font-weight: 700; font-size: 2em">0</div>
               </center>
             </div>
           </div>
@@ -216,13 +242,13 @@
         <div class="col-md-2">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">
+              <h2 class="panel-title" style="font-size: 3em;">
                 <center><b>Poli KIA</b></center>
               </h3>
             </div>
             <div class="panel-body panel-view">
               <center>
-              <div id="show_kia" style="font-weight: 700; font-size: 1.6em">0</div>
+              <div id="show_kia" style="font-weight: 700; font-size: 2em">0</div>
               </center>
             </div>
           </div>
@@ -230,13 +256,13 @@
         <div class="col-md-2">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">
-                <center><b>Poli Apa</b></center>
+              <h2 class="panel-title" style="font-size: 3em;">
+                <center><b>Pendaftaran</b></center>
               </h3>
             </div>
             <div class="panel-body panel-view">
               <center>
-                <div id="show_apa" style="font-weight: 700; font-size: 1.6em">0</div>
+                <div id="show_apa" style="font-weight: 700; font-size: 2em">0</div>
               </center>
             </div>
           </div>
@@ -279,10 +305,11 @@
             </div>
             <div class="panel-body">
               <center>
-                <input id="tx_jumlah" type="number" class="form-control" placeholder="Jumlah antrian" required>
+                <input id="tx_jumlah" type="number" class="form-control" placeholder="Jumlah antrian">
                 <br>
                 <input class="btn btn-primary" type="button" id="update_jumlah" value="Simpan">
-                <a class="btn btn-danger" href="#" role="button">Buat Baru</a>
+                <input class="btn btn-danger" type="button" id="kosongkan_jumlah" value="Buat Baru">
+                <!-- <a id="kosongkan_jumlah" class="btn btn-danger" role="button">Buat Baru</a> -->
               </center>
             </div>
           </div>
